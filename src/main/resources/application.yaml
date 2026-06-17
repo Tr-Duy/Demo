@@ -1,0 +1,41 @@
+#cau hinh spring 
+spring:
+  application:
+    name: demo                          # Tên ứng dụng Spring Boot
+  profiles:
+    active: ${APP_PROFILE:dev}          # Profile đang dùng, mặc định là "dev" nếu biến môi trường APP_PROFILE không được set
+  jpa:
+    show-sql: true                      # In câu lệnh SQL ra console khi thực thi
+    open-in-view: false                 # Tắt Open Session In View (tránh lazy loading ngoài tầng service)
+    hibernate:
+      ddl-auto: validate                # Hibernate chỉ kiểm tra schema DB có khớp với entity không, không tự tạo/sửa bảng
+    properties:
+      hibernate:
+        format_sql: true                # Format SQL in ra console cho dễ đọc (xuống dòng, thụt lề)
+  flyway:
+    enabled: true                       # Bật Flyway để quản lý migration DB tự động
+    locations: classpath:db/migration   # Thư mục chứa các file migration SQL (V1__xxx.sql, V2__xxx.sql, ...)
+    baseline-on-migrate: true           # Nếu DB đã có sẵn dữ liệu, tự động đặt baseline thay vì báo lỗi
+  sql:
+    init:
+      mode: never                       # Không chạy file schema.sql / data.sql khi khởi động (để Flyway quản lý thay)
+
+server:
+  port: 8080                            # Cổng server lắng nghe request
+
+springdoc:
+  api-docs:
+    enabled: true                       # Bật endpoint /v3/api-docs để expose OpenAPI spec
+  swagger-ui:
+    enabled: true                       # Bật giao diện Swagger UI
+    path: /swagger-ui.html              # Đường dẫn truy cập Swagger UI
+    disable-swagger-default-url: true   # Ẩn URL mẫu mặc định của Swagger (petstore)
+    operations-sorter: alpha            # Sắp xếp các API endpoint theo thứ tự alphabet
+    tags-sorter: alpha                  # Sắp xếp các tag (nhóm API) theo thứ tự alphabet
+
+app:
+  jwt:
+    issuer: yoedu-demo
+    secret: yoedu-demo-secret-key-12345678901234567890
+    access-token-ttl-minutes: 480
+    refresh-token-ttl-days: 7               # Thời gian sống của refresh token: 7 ngày

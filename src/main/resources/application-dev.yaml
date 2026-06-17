@@ -1,0 +1,23 @@
+# Cau hinh moi truong dev
+spring:
+  datasource:
+    url: ${YOEDU_DB_URL:jdbc:mysql://localhost:3306/yoedu_demo?createDatabaseIfNotExist=true}  # URL DB, mặc định localhost
+    username: ${YOEDU_DB_USER:root}          # User DB, mặc định root
+    password: ${YOEDU_DB_PASSWORD:123456}    # Mật khẩu DB, mặc định 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Driver MySQL
+  flyway:
+    enabled: false                           # Tắt Flyway ở dev (không migration tự động)
+  jpa:
+    hibernate:
+      ddl-auto: none                         # Không tự tạo/sửa bảng
+    show-sql: true                           # In SQL ra console để debug
+    properties:
+      hibernate:
+        format_sql: true                     # Format SQL cho dễ đọc
+
+app:
+  jwt:
+    issuer: yoedu-app
+    secret: my-super-secret-key-that-is-at-least-32-characters-long
+    access-token-ttl-minutes: 30
+    refresh-token-ttl-days: 7

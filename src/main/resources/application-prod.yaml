@@ -1,0 +1,11 @@
+# Cau hinh moi truong production
+spring:
+  datasource:
+    url: ${YOEDU_DB_URL}          # Bắt buộc truyền qua biến môi trường, không có mặc định
+    username: ${YOEDU_DB_USER}    # Bắt buộc truyền qua biến môi trường
+    password: ${YOEDU_DB_PASSWORD}  # Bắt buộc truyền qua biến môi trường
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Driver MySQL
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect  # Chỉ định rõ dialect MySQL cho production
