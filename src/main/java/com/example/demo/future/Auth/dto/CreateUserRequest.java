@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class AuthRequest {
+public class CreateUserRequest {
     @NotBlank @Size(max = 50)
     String username;
 
