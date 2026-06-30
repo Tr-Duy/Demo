@@ -18,7 +18,7 @@ public record AppJwtProperties(
         //khoa bi mat de ky JWT,khong duoc de trong
         @Min(1) long accessTokenTtlMinutes,
         //thoi gian song cua access token(phut) , toi thieu 1 phut thuong 15 -30 phut
-        @Min(1) long refreshTokenTtDays
+        @Min(1) long refreshTokenTtlDays
         //thoi gian song cua refresh token(ngay), toi thieu 1 ngay thuong 7 -30 ngay
 ) {
 }

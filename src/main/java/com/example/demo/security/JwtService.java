@@ -69,7 +69,7 @@ public class JwtService {
     // dùng trong AuthServiceImpl: generateRefreshToken(user.getUsername())
     public String generateRefreshToken(String username) {
         Instant now = Instant.now();
-        Instant expiresAt = now.plusSeconds(properties.refreshTokenTtDays() * 86400);
+        Instant expiresAt = now.plusSeconds(properties.refreshTokenTtlDays() * 86400);
         return Jwts.builder()
                 .issuer(properties.issuer())
                 .subject(username)
@@ -84,7 +84,7 @@ public class JwtService {
     // overload dùng khi cần truyền Users
     public String generateRefreshToken(User user) {
         Instant now = Instant.now();
-        Instant expiresAt = now.plusSeconds(properties.refreshTokenTtDays() * 86400);
+        Instant expiresAt = now.plusSeconds(properties.refreshTokenTtlDays() * 86400);
         return Jwts.builder()
                 .issuer(properties.issuer())
                 .subject(user.getUsername())
