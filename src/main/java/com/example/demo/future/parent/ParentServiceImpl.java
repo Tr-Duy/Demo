@@ -4,16 +4,19 @@ import com.example.demo.common.exception.NotFoundException;
 import com.example.demo.future.parent.domain.Parent;
 import com.example.demo.future.parent.dto.ParentReponse;
 import com.example.demo.future.parent.dto.ParentRequest;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Setter
+@Data
 @RequiredArgsConstructor
 public class ParentServiceImpl implements ParentService {
     private final ParentRepository parentRepository;
@@ -21,8 +24,8 @@ public class ParentServiceImpl implements ParentService {
 
     //ham lay toan bo danh sach Parent
     @Override
-    public List<ParentReponse> findAll(){
-        return parentRepository.findAll().stream().map(p -> mapper.map(p,ParentReponse.class)).toList();
+    public Page<ParentReponse> findAll(Pageable pageable){
+        return parentRepository.findAll(pageable).map(p -> mapper.map(p,ParentReponse.class));
     }
     //ham tim kiem theo id
     @Override

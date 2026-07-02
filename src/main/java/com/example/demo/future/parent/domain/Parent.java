@@ -12,11 +12,12 @@ import lombok.EqualsAndHashCode;
 public class Parent extends AuditableEntity {
 
     @Column(columnDefinition = "varchar(100)")
-    private String fullname;
+    private String full_name;
 
     @Column(columnDefinition = "varchar(20)")
     private String phone;
-
+    @Column(columnDefinition = "varchar(100)")
+    private String email;
     @Column(columnDefinition = "varchar(200)")
     private String address;
 

@@ -10,7 +10,7 @@ import lombok.Data;
 public class ParentRequest {
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
-    private String name;
+    private String full_name;
 
     @Size(max = 100,message = "Email must be less than 100 characters")
     private String email;
